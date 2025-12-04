@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Agendar Ingresso - Cinema Online</title>
     <link rel="stylesheet" href="/css/style.css">
 
     <style>
-        body{
+        body {
             font-family: Arial, sans-serif;
             background: #111;
             color: #fff;
             padding: 20px;
         }
-        h1{
+
+        h1 {
             text-align: center;
             margin-bottom: 30px;
         }
-        .container{
+
+        .container {
             background: #222;
             padding: 25px;
             border-radius: 10px;
             max-width: 800px;
             margin: auto;
         }
-        label{
+
+        label {
             font-weight: bold;
         }
-        select, input{
+
+        select,
+        input {
             width: 100%;
             padding: 8px;
             margin: 8px 0 20px 0;
             border-radius: 6px;
             border: none;
         }
-        button{
+
+        button {
             background: #e50914;
             color: white;
             padding: 12px 20px;
@@ -43,7 +50,31 @@
             border-radius: 6px;
             cursor: pointer;
         }
-        button:hover{
+
+        button:hover {
+            background: #b00610;
+        }
+
+        /* ADICIONADO: botão administrativo no canto superior direito */
+        .top-actions {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 10px auto;
+        }
+
+        .admin-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #e50914;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .admin-btn:hover {
             background: #b00610;
         }
     </style>
@@ -51,10 +82,14 @@
 
 <body>
 
+    <div class="top-actions">
+        <a class="admin-btn" href="/filme/lst">Administração</a>
+    </div>
+
     <h1>Agendar Ingresso</h1>
 
     <div class="container">
-        <form action="/ingressos/salvar" method="POST">
+        <form action="/ingresso/salvar" method="POST">
 
             <!-- DADOS DO CLIENTE -->
             <h2>Dados do Cliente</h2>
@@ -88,11 +123,11 @@
 
             <label>Selecione o filme *</label>
             <select name="filme" id="filmeSelect" required>
-                <% filmes.forEach(filme => { %>
+                <% filme.forEach(filme=> { %>
                     <option value="<%= filme.nome %>">
                         <%= filme.nome %> - <%= filme.genero %> - <%= filme.classificacao %>
                     </option>
-                <% }) %>
+                    <% }) %>
             </select>
 
             <!-- SESSÃO -->
@@ -100,12 +135,12 @@
 
             <label>Escolha a sessão *</label>
             <select name="sessao" id="sessaoSelect" required>
-                <% sessoes.forEach(sessao => { %>
+                <% sessao.forEach(sessao=> { %>
                     <option value="<%= sessao._id %>">
                         Filme: <%= sessao.filme %> | Sala <%= sessao.sala %> |
-                        <%= sessao.data %> - <%= sessao.horario %> | <%= sessao.idioma %>
+                                <%= sessao.data %> - <%= sessao.horario %> | <%= sessao.idioma %>
                     </option>
-                <% }) %>
+                    <% }) %>
             </select>
 
             <!-- INGRESSO -->
@@ -129,5 +164,5 @@
     </div>
 
 </body>
-</html>
 
+</html>
