@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar Ingresso - Cinema Online</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #fff;
+            padding: 20px;
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container{
+            background: #222;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: auto;
+        }
+        label{
+            font-weight: bold;
+        }
+        select, input{
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 20px 0;
+            border-radius: 6px;
+            border: none;
+        }
+        button{
+            background: #e50914;
+            color: white;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #b00610;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Agendar Ingresso</h1>
+
+    <div class="container">
+        <form action="/ingressos/salvar" method="POST">
+
+            <!-- DADOS DO CLIENTE -->
+            <h2>Dados do Cliente</h2>
+
+            <label>Nome completo *</label>
+            <input type="text" name="nome" required>
+
+            <label>Email</label>
+            <input type="email" name="email">
+
+            <label>Telefone</label>
+            <input type="number" name="telefone">
+
+            <label>CPF</label>
+            <input type="number" name="cpf">
+
+            <label>Data de nascimento</label>
+            <input type="date" name="datanascimento">
+
+            <label>Cliente</label>
+            <select name="cliente">
+                <option>Regular</option>
+                <option>VIP</option>
+                <option>Estudante</option>
+            </select>
+
+            <hr>
+
+            <!-- FILME -->
+            <h2>Filme</h2>
+
+            <label>Selecione o filme *</label>
+            <select name="filme" id="filmeSelect" required>
+                <% filmes.forEach(filme => { %>
+                    <option value="<%= filme.nome %>">
+                        <%= filme.nome %> - <%= filme.genero %> - <%= filme.classificacao %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <!-- SESSÃO -->
+            <h2>Sessão</h2>
+
+            <label>Escolha a sessão *</label>
+            <select name="sessao" id="sessaoSelect" required>
+                <% sessoes.forEach(sessao => { %>
+                    <option value="<%= sessao._id %>">
+                        Filme: <%= sessao.filme %> | Sala <%= sessao.sala %> |
+                        <%= sessao.data %> - <%= sessao.horario %> | <%= sessao.idioma %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <!-- INGRESSO -->
+            <h2>Ingresso</h2>
+
+            <label>Tipo do ingresso</label>
+            <select name="tipoingresso">
+                <option>Inteira</option>
+                <option>Meia</option>
+                <option>VIP</option>
+            </select>
+
+            <label>Assento</label>
+            <input type="text" name="assento" placeholder="Ex: B12">
+
+            <label>Preço</label>
+            <input type="text" name="preco" placeholder="Ex: 25.00">
+
+            <button type="submit">Confirmar Agendamento</button>
+        </form>
+    </div>
+
+</body>
+</html>
+

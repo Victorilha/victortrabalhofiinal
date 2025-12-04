@@ -35,8 +35,22 @@ const upload = multer({ storage });
 
 // COLOCAR AS ROTAS AQUI
 app.get('/', (req, res) => {
-    res.render("index")
+    res.render("agendar")
 })
+
+app.get("/agendar", async (req, res) => {
+    const filmes = await Filme.find();
+    const sessoes = await Sessao.find();
+    
+    res.render("agendar", { filmes, sessoes });
+});
+
+app.post("/ingressos/salvar", async (req, res) => {
+    await Ingresso.create(req.body);
+    res.redirect("/agendar");
+});
+
+
 
 
 app.get('/Filme/lst', async (req, res) => {
