@@ -35,21 +35,47 @@ const upload = multer({ storage });
 
 // COLOCAR AS ROTAS AQUI
 app.get('/', (req, res) => {
-    res.render("agendar")
+    // redireciona para a rota que carrega filmes e sessões
+    res.redirect('/agendar');
 })
 
 app.get("/agendar", async (req, res) => {
-    const filmes = await Filme.find();
-    const sessoes = await Sessao.find();
+    const filme = await Filme.find();
+    const sessao = await Sessao.find();
     
-    res.render("agendar", { filmes, sessoes });
+    res.render("agendar", { filme, sessao });
 });
 
-app.post("/ingressos/salvar", async (req, res) => {
-    await Ingresso.create(req.body);
-    res.redirect("/agendar");
-});
+app.post("/ingresso/salvar", async (req, res) => {
+    try {
+        // cria o cliente com os dados enviados no formulário (mesma lógica de /cliente/add/ok)
+        const clienteData = {
+            nome: req.body.nome,
+            email: req.body.email,
+            telefone: req.body.telefone,
+            cpf: req.body.cpf,
+            datanascimento: req.body.datanascimento,
+            cliente: req.body.cliente
+        };
+        const clienteDoc = await Cliente.create(clienteData);
 
+        // cria o ingresso associando ao cliente criado
+        const ingressoData = {
+            filme: req.body.filme,
+            sessao: req.body.sessao,
+            tipoingresso: req.body.tipoingresso,
+            assento: req.body.assento,
+            preco: req.body.preco,
+            cliente: clienteDoc._id
+        };
+        await Ingresso.create(ingressoData);
+
+        res.redirect("/agendar");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Erro ao salvar ingresso/cliente");
+    }
+});
 
 
 
