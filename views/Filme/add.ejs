@@ -1,0 +1,44 @@
+     <%-include('../cabecalho.ejs')%>
+     <header>
+        <h3>Adicionar Novo filme</h3>
+      </header>
+      <div class="content">
+        <form id="form-filme" autocomplete="off" method="post" action="/Filme/add/ok">
+          <div class="grid">
+            <div>
+              <label for="nome">Nome do Filme</label>
+              <input id="nome" name="nome" type="text" placeholder="Ex: Pânico" required>
+            </div>
+            <div>
+              <label for="descricao">Descrição</label>
+              <input id="descricao" name="descricao" type="text" placeholder="Ex: " required>
+            </div>
+            </div>
+            <div>
+              <label for="duracao">Duração do filme</label>
+              <input id="duracao" name="duracao" type="text" placeholder="Ex: 2h15m" required>
+            </div>
+            <div>
+              <label for="genero">Gênero </label>
+               <select id="genero" name="genero" required>
+                <option value="" disabled selected>Selecione o tipo</option>
+                <option>Drama</option>
+                <option>Terror</option>
+                <option>Ação</option>
+                <option>Romance</option>
+              </select>
+            </div>
+            <div>
+              <label for="classificacao">Classcificação do filme</label>
+              <input id="classificacao" name="classificacao" type="text" placeholder="Ex: 18+" required>
+            </div>
+            
+          
+          <footer>
+            <a type="button" class="btn ghost" id="btn-cancelar" href="/filme/lst">Cancelar</a>
+            <button type="submit" class="btn primary">Adicionar filme</button>
+          </footer>
+        </form>
+      </div>
+
+      <%-include('../rodape.ejs')%>

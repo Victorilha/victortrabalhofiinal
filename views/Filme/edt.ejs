@@ -1,0 +1,43 @@
+<%- include('../cabecalho.ejs') %>
+<header>
+  <h3>Editar filme</h3>
+</header>
+<div class="content">
+  <form id="form-filme" autocomplete="off" method="post">
+    <div class="grid">
+      <div>
+        <label for="nome"><%= filme.nome %></label>
+        <input id="nome" name="nome" type="text" placeholder="Ex: Pânico" value="<%= filme.nome %>" required>
+      </div>
+      <div>
+        <label for="descricao">Descrição</label>
+        <input id="descricao" name="descricao" type="text" placeholder="Ex: Um filme de terror" value="<%= filme.descricao %>" required>
+      </div>
+    </div>
+    <div>
+      <label for="duracao">Duração do filme</label>
+      <input id="duracao" name="duracao" type="text" placeholder="Ex: 2h15m" value="<%= filme.duracao %>" required>
+    </div>
+    <div>
+      <label for="genero">Gênero</label>
+      <select id="genero" name="genero" required>
+        <option value="" disabled selected>Selecione o tipo</option>
+        <option <%= filme.genero === 'Drama' ? 'selected' : '' %>>Drama</option>
+        <option <%= filme.genero === 'Terror' ? 'selected' : '' %>>Terror</option>
+        <option <%= filme.genero === 'Ação' ? 'selected' : '' %>>Ação</option>
+        <option <%= filme.genero === 'Romance' ? 'selected' : '' %>>Romance</option>
+      </select>
+    </div>
+    <div>
+      <label for="classificacao">Classificação do filme</label>
+      <input id="classificacao" name="classificacao" type="text" placeholder="Ex: 18+" value="<%= filme.classificacao %>" required>
+    </div>
+
+    <footer>
+      <a type="button" class="btn ghost" id="btn-cancelar" href="/Filme/lst">Cancelar</a>
+      <button type="submit" class="btn primary">Editar filme</button>
+    </footer>
+  </form>
+</div>
+
+<%- include('../rodape.ejs') %>

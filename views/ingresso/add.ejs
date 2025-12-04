@@ -1,0 +1,46 @@
+     <%-include('../cabecalho.ejs')%>
+     <header>
+        <h3>Adicionar Novo ingresso</h3>
+      </header>
+      <div class="content">
+        <form id="form-ingresso" autocomplete="off" method="post" action="/ingresso/add/ok">
+          <div class="grid">
+            <div>
+              <label for="sessao">Nome da sessao</label>
+              <input id="sessao" name="sessao" type="text" placeholder="Ex: Pânico" required>
+            </div>
+            <div>
+              <label for="cliente">Usuário</label>
+              <input id="cliente" name="cliente" type="text" placeholder="Ex: João Silva " required>
+            </div>
+            </div>
+            <div>
+              <label for="tipoingresso">Tipo do ingresso</label>
+             <select id="tipoingresso" name="tipoingresso" required>
+                <option value="" disabled selected>Selecione o tipo</option>
+                <option>Inteira</option>
+                <option>Meia</option>
+              </select>
+            </div>
+            <div>
+              <label for="assento">Assento</label>
+               <input id="assento" name="assento" type="text" placeholder="Ex: H23 " required>
+            </div>
+            <div>
+              <label for="preco">Preço do ingresso</label>
+               <select id="preco" name="preco" required>
+                <option value="" disabled selected>Selecione o preco</option>
+                <option>15</option>
+                <option>30</option>
+              </select>
+            </div>
+            
+          
+          <footer>
+            <a type="button" class="btn ghost" id="btn-cancelar" href="/ingresso/lst">Cancelar</a>
+            <button type="submit" class="btn primary">Adicionar ingresso</button>
+          </footer>
+        </form>
+      </div>
+
+      <%-include('../rodape.ejs')%>

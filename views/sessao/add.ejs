@@ -1,0 +1,42 @@
+    <%-include('../cabecalho.ejs')%>
+     <header >
+        <h3>Adicionar Nova Sessão</h3>
+      </header>
+      <div class="content">
+        <form id="form-sessao" method="post"  autocomplete="off" action="/sessao/add/ok">
+          <div class="grid">
+            <div>
+              <label for="filme">Nome do Filme</label>
+              <input id="filme" name="filme" type="text" placeholder="Ex: Pânico" required>
+            </div>
+            <div>
+              <label for="sala">Sala</label>
+              <input id="sala" name="sala" type="number" placeholder="Ex: 5 " required>
+            </div>
+            </div>
+            <div>
+              <label for="preco">Preço</label>
+              <input id="preco" name="preco" type="text" placeholder="Ex: R$25,00" required>
+            </div>
+            <div>
+              <label for="horario">Horário</label>
+                <input id="horario" name="horario" type="text" placeholder="Ex: 22:30" required>
+            </div>
+            <div>
+              <label for="data">Data</label>
+              <input id="data" name="data" type="text" placeholder="Ex: 21/04/25" required>
+            </div>
+            <div>
+              <label for="idioma">Idioma</label>
+              <input id="idioma" name="idioma" type="text" placeholder="PT/BR" required>
+            </div>
+            
+          
+          <footer>
+            <a type="button" class="btn ghost" id="btn-cancelar" href="/sessao/lst">Cancelar</a>
+            <button type="submit" class="btn primary">Adicionar sessao</button>
+          </footer>
+        </form>
+      </div>
+
+      <%-include('../rodape.ejs')%>
